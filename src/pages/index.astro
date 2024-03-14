@@ -2,11 +2,34 @@
 import "../styles/style.css"
 import MainLayout from "../layouts/MainLayout.astro";
 import Button from "../components/Button.astro";
+const data = await fetch("https://uwrwptibotlxlvcdeicv.supabase.co/rest/v1/tvshows",{
+method:"GET",
+headers:{
+//    apikey: 
+}
+}).then(res=>res.json());
+
+
+
 ---
 
 <MainLayout title="Hjem">
  <Button variant="primary" size="small">TEXT</button>
  <Button variant="secondary" size="medium">TEXT</button>
  <Button variant="secondary" size="large">TEXT</button>
+ <section class="shows">
+      {data.map(show=>{
+        return <TVShow data{show} />;
+
+    })}
+   
+
+ </section>
+ 
+
+
+
 </MainLayout>
+
+
 
